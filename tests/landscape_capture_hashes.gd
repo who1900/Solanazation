@@ -1,0 +1,35 @@
+extends SceneTree
+## Guards the final GL acceptance evidence and its provenance table.
+
+const EXPECTED := {
+	"landscape-575-0.6.png": "9F9037279734E8B246D0265B9D7C4A575D1AACA2076984FE0F41A560FE92644F",
+	"landscape-575-2.0.png": "76393D93DE9F7FB83E758179F1146F3606C7CABB5091577F75ECAC55EAF40C0A",
+	"landscape-575-3.5.png": "5D81263A9E413B2B2167EB8377D53DEFA20C6A7EA4E4AAFD872DF14AA0D648E5",
+	"landscape-575-phase-a.png": "3516C5ACED2A9AF8143BF9ACF23062A8D7B49AD0CFDA4262ED2E83CB31F067CC",
+	"landscape-575-phase-b.png": "29A59DF7E889E28A1324D257B6C829E05349CD3CD32B942363F994E0BAEAF7BB",
+	"landscape-575-phase-sheet.png": "BB3FAB17061B044014D6E617DF59C7AC4BC66E22610E5E256054097090EEDBD3",
+	"landscape-575-zoom-sheet.png": "4FE2A45084EC0E0263BF0FF529AE8847F2F6ECDA012F691A511F18C45F276342",
+	"landscape-720-0.6.png": "E0664FAC4DCF122CA91A5A3C21937CFF652409E0CE008640F4A4BAF9B027637C",
+	"landscape-720-2.0.png": "5EB3731543A5ADCD07E1841D7B83DFEE2473C8F285718504B7C7AD3C63C49817",
+	"landscape-720-3.5.png": "AD29854A3A03B83A5CC5581B53E15943929F5CBE260DAF64CA4DB854D0974FBC",
+	"landscape-720-cvd-sheet.png": "10B9D0B42F5097FFA6941B47A161ADA23E285F15FB676DD496448BAC85480D08",
+	"landscape-720-phase-a.png": "923233736B221EB144DBB3216B34400114419F4ACD73F357B7DA55C8432B39A0",
+	"landscape-720-phase-b.png": "5EB3731543A5ADCD07E1841D7B83DFEE2473C8F285718504B7C7AD3C63C49817",
+	"landscape-720-phase-sheet.png": "882A97D3E0F6E1353CBA7076FF7306F2E1DD55AA8350336E98776A745FE0A05E",
+	"landscape-720-zoom-sheet.png": "ACC86CB7F6B324102D4D1FE7CB8B982D15CA9D46D8221041C475B9E58198EBE0",
+}
+
+
+func _initialize() -> void:
+	var failures := 0
+	var provenance := FileAccess.get_file_as_string(
+		"res://docs/art-sources/code-native/landscape-water-v1/README.md")
+	for filename in EXPECTED:
+		var path := "res://docs/captures/landscape/%s" % filename
+		var actual := FileAccess.get_sha256(path).to_upper()
+		if actual != EXPECTED[filename] or not provenance.contains(EXPECTED[filename]):
+			failures += 1
+			push_error("Landscape hash/provenance mismatch: %s" % filename)
+	print("LANDSCAPE_CAPTURE_HASH_%s failures=%d" % [
+		"PASS" if failures == 0 else "FAIL", failures])
+	quit(0 if failures == 0 else 1)

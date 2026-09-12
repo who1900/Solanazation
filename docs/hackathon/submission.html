@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Solanazation — Hackathon Submission Draft</title>
+  <style>
+    body { max-width: 820px; margin: 40px auto; padding: 0 20px;
+           font: 16px/1.55 system-ui, sans-serif; color: #181818; }
+    h1, h2 { line-height: 1.2; }
+    code { background: #eee; padding: 2px 5px; }
+    .status { border-left: 4px solid #777; padding-left: 14px; }
+  </style>
+</head>
+<body>
+  <h1>Solanazation</h1>
+  <p>
+    Solanazation is a portrait mobile 4X strategy prototype for Android/Seeker,
+    built in Godot 4.4.1 with GDScript. Its current offline game loop combines map
+    exploration, persistent fog memory, city founding and production, an educational
+    Solana technology tree, multiple AI rivals, turn guidance, and local saves.
+  </p>
+
+  <h2>What works today</h2>
+  <p>
+    The offline strategy core is implemented and can be run from
+    <code>scenes/Main.tscn</code>. City-depth work remains in progress and is not
+    fully accepted into the stable baseline.
+  </p>
+
+  <h2>Solana integration</h2>
+  <p>
+    Mobile Wallet Adapter integration is planned but its Kotlin plugin has not yet
+    been applied, compiled, or device-tested. The documented staking design uses an
+    existing LST with separate nonredeemable cosmetic gameplay credits. No live
+    staking, credits backend, custody, or mainnet flow exists today.
+  </p>
+
+  <h2>Demo outline — approximately 2:40</h2>
+  <ol>
+    <li><strong>0:00–0:20</strong> — Launch the portrait Android game and show the map.</li>
+    <li><strong>0:20–0:50</strong> — Explore terrain and demonstrate fog memory.</li>
+    <li><strong>0:50–1:20</strong> — Found a city and start production.</li>
+    <li><strong>1:20–1:45</strong> — Open the Solana technology tree.</li>
+    <li><strong>1:45–2:10</strong> — Advance turns and show multiple AI rivals.</li>
+    <li><strong>2:10–2:25</strong> — Save, reload, and recover the offline game state.</li>
+    <li><strong>2:25–2:40</strong> — Clearly identify MWA and staking as planned work.</li>
+  </ol>
+
+  <h2>Submission status</h2>
+  <div class="status">
+    <p>
+      Repository target: <code>who1900/Solanazation</code>. No public APK or demo
+      video is available yet; the missing demo link is a blocking submission item.
+    </p>
+    <p>
+      CLOCK IN is the current Solana Mobile hackathon, running September 8–October 8,
+      2026. MONOLITH has ended. Event selection still requires confirmation, and this
+      project is not yet registered or submitted.
+    </p>
+  </div>
+</body>
+</html>
